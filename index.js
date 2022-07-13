@@ -188,4 +188,5 @@ app.all('*',function(req,res,next){
 // CREATING OUR GLOBAL ERROR HANDLER
 app.use(errorController);
 
+// Exporting app
 module.exports = app;
