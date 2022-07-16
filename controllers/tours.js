@@ -50,7 +50,7 @@ exports.uploadTourImages = upload.fields([
 
 // code to resize the image files using multer
 exports.resizeTourImages = catchAsync(async (req,res,next)=>{
-  console.log(req.files)
+  // console.log(req.files)
   if(!req.files.imageCover || !req.files.images) return next()
 
 
@@ -217,7 +217,7 @@ exports.getTourStats = catchAsync(async (req,res,next)=>{
 exports.getMonthlyPlan = catchAsync(async (req,res,next)=>{
         const year = req.params.year * 1;
 
-        console.log(year)
+        // console.log(year)
 
         const plan = await Tour.aggregate([
             {
@@ -254,7 +254,7 @@ exports.getMonthlyPlan = catchAsync(async (req,res,next)=>{
             }
         ]);
 
-        console.log('we got here');
+        // console.log('we got here');
         res.status(200).json({
             status:'success',
             result : plan.length,

@@ -73,7 +73,7 @@ const handleIdErrorDB = err =>{
 // HANDLEDUPLICATEFIELDS FUNCTION
 const handleDuplicateFieldsDB = err =>{
    const value = err.keyValue.name;
-  console.log(value);
+//   console.log(value);
 
   const message = `Duplicate field value: ${value}. Please use another value!`;
   return new AppError(message, 400);
@@ -109,12 +109,12 @@ module.exports = (err, req, res, next)=>{
 
     // sending back the error message to our server
     if (process.env.NODE_ENV === 'development'){
-        console.log(err)
+        // console.log(err)
         sendErrorDev(err,req,res);
     }
     else if(process.env.NODE_ENV === 'production'){
 
-        console.log(err)
+        // console.log(err)
         let error = {...err};
 
         error.message = err.message

@@ -29,6 +29,9 @@ const cookieParser = require('cookie-parser');
 // requiring the helmet module
 const helmet = require('helmet');
 
+// requiring the npm compression package
+const compression = require('compression');
+
 // requiring the cors library
 const cors = require('cors')
 // Requiring the AppError module and errorController module
@@ -46,7 +49,7 @@ const viewRouter = require('./routes/viewRouter');
 // Making usue of the epress function
 const app = Express();
 
-console.log(app.get('env'))
+// console.log(app.get('env'))
 
 // GLOBAL MIDDLEWARES
 
@@ -120,6 +123,8 @@ app.use(function(req,res,next){
 const Tour = fs.readFileSync(__dirname + '/dev-data/data/tours-simple.json','utf-8');
 
 const tour = JSON.parse(Tour);
+// making use of the compression middleware
+app.use(compression())
 
 // calling on a getTours/getUsers request
 
