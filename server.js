@@ -66,7 +66,7 @@ const app = require('./index');
 
 // console.log(process.env)
 
-const port = process.env.port || 3000
+const port = process.env.PORT || 3000
 const server = app.listen(port, function(){
     console.log('Server running on port 3000')
 });
@@ -80,3 +80,26 @@ process.on('unhandledRejection',function(err){
         process.exit(1)
     })
 });
+
+
+
+// NODE_ENV= production
+// PORT=3000
+// DATABASE_PASSOWRD=ut3nGiJyLU0L0rzY
+
+// JWT_SECRET=this-is-a-very-strong-jwt-secret-for-this-application
+// JWT_EXPIRES_IN=90d
+
+// JWT_COOKIE_EXPIRES_IN=90
+
+// EMAIL_USERNAME=f71bca21ae80b3
+// EMAIL_PASSWORD=3d485518429404
+// EMAIL_HOST=smtp.mailtrap.io
+// EMAIL_PORT=25
+
+// EMAIL_FROM=run2austinfabian@gmail.com
+
+// SENDGRID_USERNAME=
+// SENDGRID_PASSWORD=
+
+// STRIPE_SECRET_KEY=sk_test_51LKd9wGdzBwLXLVlFTZfmYFfgzzoTGmcX6aT6rte6uVzLhtKnJCkL6qU5cToPX5m6PPJp5vEXhcWmGf85ZAcxnO600Gjxi1ZXK
