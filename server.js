@@ -66,7 +66,8 @@ const app = require('./index');
 
 // console.log(process.env)
 
-const server = app.listen(3000, function(){
+const port = process.env.port || 3000
+const server = app.listen(port, function(){
     console.log('Server running on port 3000')
 });
 
