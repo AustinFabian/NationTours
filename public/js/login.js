@@ -28,7 +28,7 @@ export const login = async (email, password) => {
   };
 
 
-  // FOor logging  out users
+  // For logging  out users
   export const logOut = async () => {
     try {
       const res = await axios({
