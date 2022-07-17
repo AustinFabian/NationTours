@@ -21,20 +21,20 @@ const signToken = id => {
   });
 };
 
-function createSendToken(user,statusCode,res){
+function createSendToken(user,statusCode,req,res){
 
   console.log('God is good');
     const token = signToken(user._id);
-    const cookieOptions = {
-      expires: new Date(
-        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-      ),
-      httpOnly: true
-    };
 
     if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
-    res.cookie('jwt', token, cookieOptions)
+    res.cookie('jwt', token, {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+      secure: req.secure || req.headers('x-fowarded-proto') === 'https'
+    })
 
     // Remove password from output
     user.password = undefined;
@@ -61,7 +61,7 @@ exports.signUp = catchAsync(async(req,res)=>{
 
     await new Email(newUser,url).sendWelcome()
 
-    createSendToken(newUser,201,res)
+    createSendToken(newUser,201,req,res)
 });
 
 // To authenticate a user on login
@@ -89,7 +89,7 @@ exports.logIn = catchAsync(async(req,res,next)=>{
     //     expiresIn: process.env.JWT_EXPIRES_IN
     // });
 
-    createSendToken(user,200,res)
+    createSendToken(user,200,req,res)
 });
 
 // Protecting data that can only be viewed when clients are authenticated
@@ -251,7 +251,7 @@ exports.resetPassword = catchAsync(async(req,res,next)=>{
     //     expiresIn: process.env.JWT_EXPIRES_IN
     // });
 
-    createSendToken(user,200,res)
+    createSendToken(user,200,req,res)
 });
 
 // writing code to allow user change or update password
@@ -271,5 +271,5 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // User.findByIdAndUpdate will NOT work as intended!
 
   // 4) Log user in, send JWT
-  createSendToken(user, 200, res);
+  createSendToken(user, 200, req, res);
 });

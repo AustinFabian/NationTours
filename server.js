@@ -81,5 +81,35 @@ process.on('unhandledRejection',function(err){
     })
 });
 
+process.on('SIGTERM',function(err){
+    console.log(err.name, err.message);
+    console.log('SIGTERM recieved 💥 Shutting down gracefully...');
+    server.close(()=>{
+        console.log(' process terminated')
+    })
+});
 
 
+
+
+// NODE_ENV= production
+// PORT=3000
+// DATABASE_PASSOWRD=ut3nGiJyLU0L0rzY
+
+// JWT_SECRET=this-is-a-very-strong-jwt-secret-for-this-application
+// JWT_EXPIRES_IN=90d
+
+// JWT_COOKIE_EXPIRES_IN=90
+
+// EMAIL_USERNAME=f71bca21ae80b3
+// EMAIL_PASSWORD=3d485518429404
+// EMAIL_HOST=smtp.mailtrap.io
+// EMAIL_PORT=25
+
+// EMAIL_FROM=run2austinfabian@gmail.com
+
+// SENDGRID_USERNAME=
+// SENDGRID_PASSWORD=
+
+// STRIPE_SECRET_KEY=sk_test_51LKd9wGdzBwLXLVlFTZfmYFfgzzoTGmcX6aT6rte6uVzLhtKnJCkL6qU5cToPX5m6PPJp5vEXhcWmGf85ZAcxnO600Gjxi1ZXK
+// STRIPE_WEBHOOK_SECRET=whsec_lLlRbD0zXw2CMyBoKTwJw6zhdhX6pAOT

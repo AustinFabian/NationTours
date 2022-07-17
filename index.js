@@ -43,11 +43,14 @@ const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
 const reviewRouter = require('./routes/reviewRouter');
 const bookingsRouter = require('./routes/bookingsRouter');
+const bookingsController = require('./controllers/bookingsController');
 const viewRouter = require('./routes/viewRouter');
 
 
 // Making usue of the epress function
 const app = Express();
+
+app.enable('trust proxy')
 
 // console.log(app.get('env'))
 
@@ -60,6 +63,8 @@ app.use(helmet());
 app.use(cors({
     origin: "*"
 }))
+
+app.options('*', cors())
 
 // Making use of our node template Engine
 app.set('view engine', 'pug');
@@ -80,6 +85,9 @@ const limiter = rateLimit({
 });
 
 app.use('/api', limiter);
+
+// FOR STRIPE WEBHOOK CHECKOUT
+app.post('/webhook-checkout',Express.raw({type: 'application/json'}).bookingsController.webhookCheckout)
 
 // body-parser reading data from body into req.body
 app.use(Express.json({ limit: '10kb' }));

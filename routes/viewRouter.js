@@ -4,6 +4,7 @@ const viewController = require('./../controllers/viewController')
 const authController = require('./../controllers/authController')
 const bookingsController = require('./../controllers/bookingsController')
 
+router.use(viewController.alerts)
 
 router.get('/', authController.isLoggedIn,viewController.getOverview)
 
