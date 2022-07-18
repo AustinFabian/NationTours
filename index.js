@@ -89,7 +89,8 @@ app.use('/api', limiter);
 // FOR STRIPE WEBHOOK CHECKOUT
 app.post(
   '/webhook-checkout',
-  Express.raw({ type: 'application/json' }),bookingsController.webhookCheckout
+  parser.raw({ type: 'application/json' }),
+  bookingsController.webhookCheckout
 );
 
 // body-parser reading data from body into req.body
