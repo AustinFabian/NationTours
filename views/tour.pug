@@ -76,10 +76,13 @@ block content
     section.section-map
         #map(data-locations=`${JSON.stringify(tour.locations)}`)
 
-    section.section-reviews
-        .reviews
-            each review in tour.reviews
-                +reviewCard(review)
+    if tour.reviews
+        section.section-reviews
+            .reviews
+                each review in tour.reviews
+                    +reviewCard(review)
+    else 
+        section.section-reviews No reviews 
 
 
     section.section-cta
