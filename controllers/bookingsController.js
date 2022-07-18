@@ -48,6 +48,7 @@ const createBookingCheckout = async session => {
     const user = (await User.findOne({ email: session.customer_email })).id;
     const price = session.display_items[0].amount / 100;
     await Bookings.create({ tour, user, price });
+    console.log(Bookings);
   };
 
   // FUNCTION FOR STRIPE WEBHOOK
