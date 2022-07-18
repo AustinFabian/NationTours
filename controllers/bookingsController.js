@@ -48,7 +48,6 @@ const createBookingCheckout = async session => {
     const user = (await User.findOne({ email: session.customer_email })).id;
     const price = session.amount_total / 100;
     await Bookings.create({ tour, user, price });
-    console.log(Bookings);
   };
 
   // FUNCTION FOR STRIPE WEBHOOK
@@ -68,8 +67,6 @@ const createBookingCheckout = async session => {
       return res.status(400).send(`Webhook error: ${err.message}`);
     }
   
-
-    console.log(event.type)
 
     if (event.type === 'checkout.session.completed')
       createBookingCheckout(event.data.object);
