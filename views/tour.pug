@@ -76,14 +76,13 @@ block content
     section.section-map
         #map(data-locations=`${JSON.stringify(tour.locations)}`)
 
-    if tour.reviews
-        section.section-reviews
+    section.section-reviews
+        - if(tour.reviews.length  > 0)
             .reviews
                 each review in tour.reviews
                     +reviewCard(review)
-    else 
-        section.section-reviews No reviews 
-
+        .writeup No Reviews on this tour yet, Be the first to drop a review 
+    
 
     section.section-cta
         .cta
