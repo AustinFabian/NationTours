@@ -1322,3 +1322,16 @@ body {
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
 }
+
+.writeup{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.writeup h1{
+  color: #fff;
+  font-size: inherit;
+  font-size: 30px;
+}

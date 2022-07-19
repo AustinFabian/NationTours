@@ -81,7 +81,9 @@ block content
             .reviews
                 each review in tour.reviews
                     +reviewCard(review)
-        .writeup No Reviews on this tour yet, Be the first to drop a review 
+        - if(tour.reviews.length  == 0)
+            .writeup
+                h1 No Reviews on this tour yet
     
 
     section.section-cta
