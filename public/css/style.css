@@ -1081,7 +1081,7 @@ body {
 }
 
 .card {
-  width: 500px;
+  width: 450px;
   border-radius: 3px;
   overflow: hidden;
   -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
